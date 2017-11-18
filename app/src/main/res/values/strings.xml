@@ -4,4 +4,5 @@
     <string name="lblPedidos" >Pedidos</string>
     <string name="lblBenvida">Benvido á Minibar</string>
     <string name="lblPagar" >Pagar</string>
+    <string name="lblProductos">Productos</string>
 </resources>
