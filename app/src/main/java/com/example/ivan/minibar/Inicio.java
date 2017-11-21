@@ -17,6 +17,7 @@ public class Inicio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inicio);
 
+        DBManager gestorDB = new DBManager( this.getApplicationContext() );
         Button btPedidos = (Button) findViewById(R.id.Pedidos);
 
         //Actividade 2 ao pulsar dito boton de accion
@@ -64,3 +65,4 @@ public class Inicio extends AppCompatActivity {
         }
     }
 }
+

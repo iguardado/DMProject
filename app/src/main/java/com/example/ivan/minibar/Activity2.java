@@ -9,11 +9,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -33,18 +28,22 @@ public class Activity2 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
 
+        DBManager gestorDB = new DBManager( this.getApplicationContext() );
+
+        final Button btPagar = findViewById(R.id.btPagar);
         final ImageButton btRefrescos = findViewById(R.id.btRefresco);
         final ImageButton btCervezas = findViewById(R.id.btCervexa);
         final ImageButton btCafes = findViewById(R.id.btCafe);
         final ImageButton btCombinados = findViewById(R.id.btCombinado);
         final ImageButton btZumos = findViewById(R.id.btZumos);
         final ImageButton btChupitos = findViewById(R.id.btChupitos);
-        final Producto refresco = new Producto("Refresco", 1.7);
-        final Producto cerveza = new Producto("Cerveza", 1.7);
-        final Producto zumo = new Producto("Zumo", 2.0);
-        final Producto cafe = new Producto("Café", 1.0);
-        final Producto combinado = new Producto("Combinado", 3.5);
-        final Producto chupito = new Producto("Chupito", 1.5);
+        final Producto refresco = gestorDB.getProducto(1);
+        final Producto cerveza = gestorDB.getProducto(2);
+        final Producto zumo = gestorDB.getProducto(3);
+        final Producto cafe = gestorDB.getProducto(4);
+        final Producto combinado = gestorDB.getProducto(5);
+        final Producto chupito = gestorDB.getProducto(6);
+
 
         lblTotal = (TextView) findViewById(R.id.txtTotal);
 
@@ -107,27 +106,13 @@ public class Activity2 extends Activity {
             }
         });
 
-        /*
-
-        Button boton_ok = (Button) findViewById(R.id.button_Ok);
-        boton_ok.setOnClickListener(new View.OnClickListener() {
+        btPagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setResult(1);
                 finish();
             }
         });
 
-        Button boton_cancel = (Button) findViewById(R.id.button_Cancel);
-        boton_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setResult(2);
-                finish();
-            }
-        });
-
-        */
     }
 
     private void actualizaListView(){
