@@ -33,7 +33,7 @@ public class DBManager extends SQLiteOpenHelper {
             db.execSQL("CREATE TABLE PRODUCTO (" +
                     "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nombre varchar(25) NOT NULL," +
-                    "precio REAL NOT NULL)");
+                    "precio REAL NOT NULL);");
             /*
             db.execSQL("CREATE TABLE TICKET ( " +
                     "numTicket INTEGER NOT NULL AUTO_INCREMENT, " +
@@ -47,13 +47,13 @@ public class DBManager extends SQLiteOpenHelper {
                     "precio REAL NOt NULL," +
                     "primary KEY(numLinea, numTicket));");
                     */
-            db.execSQL( "INSERT INTO PRODUCTO(ID,nombre,precio) values"+
-                        "(1,\"Refresco\",1.7),"+
-                        "(2,\"Cerveza\",1.7),"+
-                        "(3,\"Zumo\",2.0),"+
-                        "(4,\"Café\",1.0),"+
-                        "(5,\"Combinado\",3.5),"+
-                        "(6,\"Chupito\",1.5);");
+            db.execSQL( "INSERT INTO PRODUCTO(nombre,precio) values"+
+                        "('Refresco',1.7),"+
+                        "('Cerveza',1.7),"+
+                        "('Zumo',2.0),"+
+                        "('Café',1.0),"+
+                        "('Combinado',3.5),"+
+                        "('Chupito',1.5);");
             db.setTransactionSuccessful();
         } catch (SQLException exc) {
             Log.e("DBManager.onCreate", exc.getMessage());
@@ -85,13 +85,11 @@ public class DBManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM PRODUCTO WHERE ID="+Integer.toString(id) , null);
 
-
-        if (cursor.moveToFirst()) {
+        if(cursor != null && cursor.moveToFirst()){
             return new Producto(cursor.getString(1), cursor.getDouble(2));
         }
-        else{
-            return new Producto("",0.0);
-        }
+        return new Producto(Integer.toString(id),0.0);
+
 
     }
 }

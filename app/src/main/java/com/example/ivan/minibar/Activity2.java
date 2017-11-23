@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,9 +18,9 @@ import java.util.Map;
 
 public class Activity2 extends Activity {
 
-    private ArrayList<String> productos = new ArrayList<String>();;
+    private ArrayList<Producto> productos = new ArrayList<Producto>();;
     private Map<String,Producto> mapProductos = new LinkedHashMap<>();
-    private ArrayAdapter<String> adapter ;
+    private ProductosAdapter adapter ;
     private ListView listaPedidos ;
     private TextView lblTotal;
 
@@ -47,11 +48,16 @@ public class Activity2 extends Activity {
 
         lblTotal = (TextView) findViewById(R.id.txtTotal);
 
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,productos);
+        adapter = new ProductosAdapter(this, productos);
         listaPedidos = (ListView) findViewById(R.id.listPedidos);
 
         listaPedidos.setAdapter(adapter);
 
+        listaPedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
+                refresco.eliminar();
+            }
+        });
         btRefrescos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,10 +129,9 @@ public class Activity2 extends Activity {
         while(it.hasNext()){
             String clave = (String) it.next();
             producto = (Producto) mapProductos.get(clave);
-
-            productos.add(String.format(producto.getCantidad() +
-                    "x    " + producto.getNombre() +
-                    "       " + String.format("%.2f", producto.getCantidad() * producto.getPrecio())));
+            if(producto.getCantidad()>0) {
+                productos.add(producto);
+            }
         }
 
         adapter.notifyDataSetChanged();

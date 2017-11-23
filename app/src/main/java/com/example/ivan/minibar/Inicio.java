@@ -18,6 +18,7 @@ public class Inicio extends AppCompatActivity {
         setContentView(R.layout.inicio);
 
         DBManager gestorDB = new DBManager( this.getApplicationContext() );
+
         Button btPedidos = (Button) findViewById(R.id.Pedidos);
 
         //Actividade 2 ao pulsar dito boton de accion
