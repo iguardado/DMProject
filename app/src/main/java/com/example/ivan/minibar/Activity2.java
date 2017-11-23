@@ -3,13 +3,14 @@ package com.example.ivan.minibar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -18,11 +19,11 @@ import java.util.Map;
 
 public class Activity2 extends Activity {
 
-    private ArrayList<Producto> productos = new ArrayList<Producto>();;
-    private Map<String,Producto> mapProductos = new LinkedHashMap<>();
-    private ProductosAdapter adapter ;
-    private ListView listaPedidos ;
-    private TextView lblTotal;
+    private static ArrayList<Producto> productos = new ArrayList<Producto>();;
+    private static Map<String,Producto> mapProductos = new LinkedHashMap<>();
+    private static ProductosAdapter adapter ;
+    private static ListView listaPedidos ;
+    private static TextView lblTotal;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class Activity2 extends Activity {
         listaPedidos = (ListView) findViewById(R.id.listPedidos);
 
         listaPedidos.setAdapter(adapter);
+
 
         listaPedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
@@ -121,7 +123,7 @@ public class Activity2 extends Activity {
 
     }
 
-    private void actualizaListView(){
+    private static void actualizaListView(){
         productos.clear();
 
         Iterator it = mapProductos.keySet().iterator();
@@ -138,7 +140,7 @@ public class Activity2 extends Activity {
         actualizarTotal();
     }
 
-    private void actualizarTotal(){
+    private static void actualizarTotal(){
         Iterator it = mapProductos.keySet().iterator();
         double total = 0.0;
         Producto producto;
@@ -152,4 +154,10 @@ public class Activity2 extends Activity {
         lblTotal.setText("TOTAL:  "+ String.format("%.2f", total));
     }
 
+    public static void eliminar(Producto p){
+
+        p.eliminar();
+        Log.i("Producto:  ",p.getNombre());
+        actualizaListView();
+    }
 }

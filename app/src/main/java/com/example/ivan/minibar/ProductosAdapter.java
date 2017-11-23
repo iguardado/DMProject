@@ -6,8 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+
+import com.example.ivan.minibar.Activity2;
+
 
 import java.util.ArrayList;
 
@@ -19,6 +22,7 @@ public class ProductosAdapter extends ArrayAdapter {
     private Context context;
     private ArrayList<Producto> datos;
 
+
     public ProductosAdapter(Context context, ArrayList datos) {
         super(context, R.layout.listviewpedido, datos);
 
@@ -27,7 +31,7 @@ public class ProductosAdapter extends ArrayAdapter {
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, final View convertView, ViewGroup parent) {
         // En primer lugar "inflamos" una nueva vista, que será la que se
         // mostrará en la celda del ListView. Para ello primero creamos el
         // inflater, y después inflamos la vista.
@@ -40,7 +44,7 @@ public class ProductosAdapter extends ArrayAdapter {
 
             @Override
             public void onClick(View v) {
-                imageButton.setId(position);
+                Activity2.eliminar(datos.get(position));
             }
         });
 

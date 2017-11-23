@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.Map;
+
 /**
  * Created by ivan on 11/21/17.
  */
@@ -34,19 +36,22 @@ public class DBManager extends SQLiteOpenHelper {
                     "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nombre varchar(25) NOT NULL," +
                     "precio REAL NOT NULL);");
-            /*
+
             db.execSQL("CREATE TABLE TICKET ( " +
-                    "numTicket INTEGER NOT NULL AUTO_INCREMENT, " +
+                    "numTicket INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "importe REAL NOT NULL, " +
                     "iva INTEGER NOT NULL, " +
                     "fecha DATE NOt NULL);");
+
             db.execSQL("CREATE TABLE LINEA_TICKET (" +
-                    "numLinea INTEGER PRIMARY KEY AUTOINCREMENT ," +
+                    "numLinea INTEGER NOT NULL," +
                     "numTicket INTEGER NOT NULL," +
                     "unidades INTEGER NOT NULL," +
-                    "precio REAL NOt NULL," +
-                    "primary KEY(numLinea, numTicket));");
-                    */
+                    "producto INTEGER NOT NULL," +
+                    "primary KEY(numLinea, numTicket), " +
+                    "FOREIGN KEY (producto) REFERENCES PRODUCTO(ID)," +
+                    "FOREIGN KEY (numTicket) REFERENCES TICKET(numTicket));");
+
             db.execSQL( "INSERT INTO PRODUCTO(nombre,precio) values"+
                         "('Refresco',1.7),"+
                         "('Cerveza',1.7),"+
@@ -92,4 +97,10 @@ public class DBManager extends SQLiteOpenHelper {
 
 
     }
+    /*public void insertarTicket(Map<String,>)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.rawQuery("" , null);
+
+    }*/
 }
