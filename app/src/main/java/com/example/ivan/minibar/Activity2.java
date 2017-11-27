@@ -1,7 +1,10 @@
 package com.example.ivan.minibar;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +14,10 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Document;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -24,13 +31,15 @@ public class Activity2 extends Activity {
     private static ProductosAdapter adapter ;
     private static ListView listaPedidos ;
     private static TextView lblTotal;
+    private static Double total;
+    private static DBManager gestorDB;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
 
-        DBManager gestorDB = new DBManager( this.getApplicationContext() );
+        gestorDB = new DBManager( this.getApplicationContext() );
 
         final Button btPagar = findViewById(R.id.btPagar);
         final ImageButton btRefrescos = findViewById(R.id.btRefresco);
@@ -117,10 +126,25 @@ public class Activity2 extends Activity {
         btPagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                AlertDialog.Builder builder = new AlertDialog.Builder( Activity2.this );
+                builder.setTitle( "Pagar" );
+                builder.setMessage("¿Desea descargar el ticket del pedido?");
+                builder.setNegativeButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        descargarTicket();
+                    }
+                });
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        guardarPedido(mapProductos, total);
+                        finish();
+                    }
+                });
+                builder.create().show();
             }
         });
-
     }
 
     private static void actualizaListView(){
@@ -142,7 +166,7 @@ public class Activity2 extends Activity {
 
     private static void actualizarTotal(){
         Iterator it = mapProductos.keySet().iterator();
-        double total = 0.0;
+        total = 0.0;
         Producto producto;
 
         while(it.hasNext()){
@@ -160,4 +184,67 @@ public class Activity2 extends Activity {
         Log.i("Producto:  ",p.getNombre());
         actualizaListView();
     }
+
+    public void descargarTicket(){
+      /* String NOMBRE_DOCUMENTO = "prueba.pdf";
+
+        // Creamos el documento.
+        Document documento = new Document() {};
+        // Creamos el fichero con el nombre que deseemos.
+        File f = crearFichero(NOMBRE_DOCUMENTO);
+
+        // Creamos el flujo de datos de salida para el fichero donde guardaremos el pdf.
+        FileOutputStream ficheroPdf = new FileOutputStream(f.getAbsolutePath());
+
+        // Asociamos el flujo que acabamos de crear al documento.
+        PdfWriter.getInstance(documento, ficheroPdf);
+
+        // Abrimos el documento.
+        documento.open();
+
+        guardarPedido(mapProductos);
+        finish();
+        */
+    }
+
+    public void guardarPedido(Map<String, Producto> map, Double total){
+        gestorDB.insertarTicket(map, total);
+    }
+/*
+    public static File crearFichero(String nombre) throws IOException {
+        File ruta = getRuta();
+        File fichero = null;
+        if (ruta != null)
+            fichero = new File(ruta, nombre);
+        return fichero;
+    }
+*/
+    /*
+    public static File getRuta() {
+
+        // El fichero será almacenado en un directorio dentro del directorio
+        // Descargas
+        File ruta = null;
+        if (Environment.MEDIA_MOUNTED.equals(Environment
+                .getExternalStorageState())) {
+            ruta = new File(
+                    Environment
+                            .getExternalStoragePublicDirectory(
+                                    Environment.DIRECTORY_DOWNLOADS),
+                    NOMBRE_DIRECTORIO);
+
+            if (ruta != null) {
+                if (!ruta.mkdirs()) {
+                    if (!ruta.exists()) {
+                        return null;
+                    }
+                }
+            }
+        } else {
+        }
+
+        return ruta;
+
+    }
+    */
 }

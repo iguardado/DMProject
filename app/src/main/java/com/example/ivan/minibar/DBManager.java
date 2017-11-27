@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -41,7 +45,7 @@ public class DBManager extends SQLiteOpenHelper {
                     "numTicket INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "importe REAL NOT NULL, " +
                     "iva INTEGER NOT NULL, " +
-                    "fecha DATE NOt NULL);");
+                    "fecha DATETIME NOt NULL);");
 
             db.execSQL("CREATE TABLE LINEA_TICKET (" +
                     "numLinea INTEGER NOT NULL," +
@@ -85,22 +89,72 @@ public class DBManager extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
-    public Producto getProducto(int id)
-    {
+    public Producto getProducto(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM PRODUCTO WHERE ID="+Integer.toString(id) , null);
 
         if(cursor != null && cursor.moveToFirst()){
-            return new Producto(cursor.getString(1), cursor.getDouble(2));
+            return new Producto(cursor.getInt(0),cursor.getString(1), cursor.getDouble(2));
         }
-        return new Producto(Integer.toString(id),0.0);
-
+        return new Producto(id,Integer.toString(id),0.0);
 
     }
-    /*public void insertarTicket(Map<String,>)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.rawQuery("" , null);
 
-    }*/
+    public String getTicket(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM TICKET ", null);
+
+        db.beginTransaction();
+        if(cursor != null && cursor.moveToFirst()) {
+            return cursor.getInt(0) + " " + cursor.getDouble(1) + ", IVA: " + cursor.getInt(2) + ", " + cursor.getString(3);
+        }
+        db.setTransactionSuccessful();
+        return "";
+
+    }
+
+    public void insertarTicket(Map<String,Producto> map, Double total){
+        SQLiteDatabase db1 = this.getReadableDatabase();
+        Iterator it = map.keySet().iterator();
+        int numTicket = 0;
+        int numLinea = 1;
+        db1.beginTransaction();
+        Cursor cursor = db1.rawQuery("SELECT COUNT(*) FROM TICKET ", null);
+
+        if(cursor != null && cursor.moveToFirst()){
+            numTicket = cursor.getInt(0)+1;
+        }
+        db1.setTransactionSuccessful();
+        db1.endTransaction();
+
+        SQLiteDatabase db2 = this.getWritableDatabase();
+
+        db2.beginTransaction();
+
+        String sqlQuery = "INSERT INTO TICKET(importe,iva,fecha) values";
+        sqlQuery += "(" + String.format("%.2f", total) + ", 21, datetime() );";
+
+        db2.execSQL(sqlQuery);
+
+        sqlQuery = "INSERT INTO LINEA_TICKET(numLinea,numTicket,unidades,producto) values";
+        while(it.hasNext()){
+            String clave = (String) it.next();
+            Producto producto = (Producto) map.get(clave);
+            sqlQuery += "(" + String.format("%d", numLinea) +
+                    "," + String.format("%d", numTicket) +
+                    "," + producto.getCantidad() +
+                    "," + String.format("%d",producto.getId())+")";
+            numLinea++;
+            if(it.hasNext()){
+                sqlQuery +=",";
+            }
+        }
+        sqlQuery += ";";
+
+        db2.execSQL(sqlQuery);
+
+        db2.setTransactionSuccessful();
+        db2.endTransaction();
+
+    }
 }

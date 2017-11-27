@@ -20,6 +20,7 @@ public class Inicio extends AppCompatActivity {
         DBManager gestorDB = new DBManager( this.getApplicationContext() );
 
         Button btPedidos = (Button) findViewById(R.id.Pedidos);
+        Button btTickets = (Button) findViewById(R.id.Tickets);
 
         //Actividade 2 ao pulsar dito boton de accion
         btPedidos.setOnClickListener(new View.OnClickListener() {
@@ -27,6 +28,14 @@ public class Inicio extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Activity2.class);
                 Inicio.this.startActivityForResult(intent, PEDIDOS);
+            }
+        });
+
+        btTickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Activity3.class);
+                Inicio.this.startActivityForResult(intent, TICKETS);
             }
         });
 /*

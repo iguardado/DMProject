@@ -6,11 +6,13 @@ package com.example.ivan.minibar;
 
 public class Producto {
 
+    private int id;
     private int cantidad;
     private String nombre;
     private double precio;
 
-    public Producto(String nombre, double precio){
+    public Producto(int id,String nombre, double precio){
+        this.id = id;
         this.cantidad = 0;
         this.nombre = nombre;
         this.precio = precio;
@@ -28,6 +30,10 @@ public class Producto {
         if(this.cantidad>0) {
             this.cantidad--;
         }
+    }
+
+    public int getId(){
+        return this.id;
     }
 
     public String getNombre() {
