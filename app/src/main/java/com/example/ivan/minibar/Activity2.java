@@ -3,8 +3,11 @@ package com.example.ivan.minibar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
+import android.print.PrintAttributes;
+import android.print.pdf.PrintedPdfDocument;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -185,66 +188,32 @@ public class Activity2 extends Activity {
         actualizaListView();
     }
 
-    public void descargarTicket(){
-      /* String NOMBRE_DOCUMENTO = "prueba.pdf";
-
-        // Creamos el documento.
-        Document documento = new Document() {};
-        // Creamos el fichero con el nombre que deseemos.
-        File f = crearFichero(NOMBRE_DOCUMENTO);
-
-        // Creamos el flujo de datos de salida para el fichero donde guardaremos el pdf.
-        FileOutputStream ficheroPdf = new FileOutputStream(f.getAbsolutePath());
-
-        // Asociamos el flujo que acabamos de crear al documento.
-        PdfWriter.getInstance(documento, ficheroPdf);
-
-        // Abrimos el documento.
-        documento.open();
-
-        guardarPedido(mapProductos);
-        finish();
-        */
-    }
 
     public void guardarPedido(Map<String, Producto> map, Double total){
         gestorDB.insertarTicket(map, total);
     }
-/*
-    public static File crearFichero(String nombre) throws IOException {
-        File ruta = getRuta();
-        File fichero = null;
-        if (ruta != null)
-            fichero = new File(ruta, nombre);
-        return fichero;
+
+    public void descargarTicket(){
+        // open a new document
+        PrintAttributes printAttributes = new PrintAttributes.Builder().
+                setColorMode(PrintAttributes.COLOR_MODE_MONOCHROME).
+                setMediaSize(PrintAttributes.MediaSize.NA_LETTER.asLandscape()).
+                setResolution(new PrintAttributes.Resolution("zooey", PRINT_SERVICE, 300, 300)).
+                setMinMargins(PrintAttributes.Margins.NO_MARGINS).
+                build();
+        PrintedPdfDocument document = new PrintedPdfDocument(this,
+                printAttributes);
+
+        PdfDocument.Page page = document.startPage(0);
+
+        View content = this.findViewById(android.R.id.content);
+        content.draw(page.getCanvas());
+
+
+        document.finishPage(page);
+
+        //document.secontent.getContentDescription());
+
+        document.close();
     }
-*/
-    /*
-    public static File getRuta() {
-
-        // El fichero será almacenado en un directorio dentro del directorio
-        // Descargas
-        File ruta = null;
-        if (Environment.MEDIA_MOUNTED.equals(Environment
-                .getExternalStorageState())) {
-            ruta = new File(
-                    Environment
-                            .getExternalStoragePublicDirectory(
-                                    Environment.DIRECTORY_DOWNLOADS),
-                    NOMBRE_DIRECTORIO);
-
-            if (ruta != null) {
-                if (!ruta.mkdirs()) {
-                    if (!ruta.exists()) {
-                        return null;
-                    }
-                }
-            }
-        } else {
-        }
-
-        return ruta;
-
-    }
-    */
 }

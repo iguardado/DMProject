@@ -5,16 +5,62 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/numTickets"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Actividade3" />
+        android:layout_weight="0.05"
+        android:text="@string/lblTickets"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <android.widget.LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Volver" />
+        android:layout_weight="0.05">
+
+        <TextView
+            android:id="@+id/numticket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text="@string/numticket"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/importeticket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="@string/importeticket"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/fechaticket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="@string/fechaticket"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </android.widget.LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/lvTickets"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
 </android.widget.LinearLayout>

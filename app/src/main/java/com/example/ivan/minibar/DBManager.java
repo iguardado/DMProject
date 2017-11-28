@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
@@ -110,6 +111,52 @@ public class DBManager extends SQLiteOpenHelper {
         }
         db.setTransactionSuccessful();
         return "";
+
+    }
+
+    public ArrayList<Ticket> getTickets(){
+        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM TICKET ", null);
+
+        db.beginTransaction();
+        if(cursor != null && cursor.moveToFirst())
+        {
+
+            do{
+
+
+                tickets.add( new Ticket(cursor.getInt(0), cursor.getDouble(1),
+                        cursor.getString(3), cursor.getInt(2),
+                        new ArrayList<LineaTicket>()) );
+
+            }while(cursor.moveToNext());
+        }
+        db.setTransactionSuccessful();
+        db.endTransaction();
+        return tickets;
+
+    }
+    public ArrayList<LineaTicket> getLineasTicket(int numticket){
+        ArrayList<LineaTicket> lineasticket = new ArrayList<LineaTicket>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM LINEA_TICKET WHERE numTicket="+Integer.toString(numticket)+";", null);
+
+        db.beginTransaction();
+        if(cursor != null && cursor.moveToFirst())
+        {
+            do{
+                Cursor cursor2 = db.rawQuery("SELECT * FROM PRODUCTO WHERE ID="+Integer.toString(cursor.getInt(3))+";", null);
+
+                lineasticket.add( new LineaTicket(cursor.getInt(0),
+                        cursor.getInt(1),
+                        cursor.getInt(2),
+                        new Producto(cursor2.getInt(0), cursor2.getString(1), cursor2.getDouble(2)) ) );
+            }while(cursor.moveToNext());
+        }
+        db.setTransactionSuccessful();
+        db.endTransaction();
+        return lineasticket;
 
     }
 

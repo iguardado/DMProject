@@ -24,6 +24,9 @@
         <activity android:name=".Activity3" android:label="Actividade3">
 
         </activity>
+        <activity android:name=".Activity4" android:label="Actividade4">
+
+        </activity>
     </application>
 
 </manifest>
