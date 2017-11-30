@@ -46,9 +46,9 @@ public class TicketsAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v)
             {
+                Activity4.setTicket(datos.get(position));
                 Intent intent = new Intent( getContext() , Activity4.class);
                 getContext().startActivity(intent);
-                Activity4.getTicketDetalle( datos.get(position) );
 
             }
         });
