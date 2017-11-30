@@ -2,7 +2,7 @@
     <string name="app_name">MiniBar</string>
     <string name="lblTickets">Tickets</string>
     <string name="lblPedidos" >Pedidos</string>
-    <string name="lblBenvida">Benvido á Minibar</string>
+    <string name="lblBenvida">Bienvenido á Minibar</string>
     <string name="lblPagar" >Pagar</string>
     <string name="lblProductos">Productos</string>
     <string name="numticket">Num</string>

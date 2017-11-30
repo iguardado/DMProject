@@ -3,6 +3,7 @@ package com.example.ivan.minibar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,9 +39,14 @@ public class Activity4 extends Activity {
         TextView ivaticket = (TextView) findViewById(R.id.lblIVA);
 
         numticket.setText( "NumTicket: " + Integer.toString( ticket.getNumTicket() ) );
-        fechaticket.setText( "Fecha: " + ticket.getFechaTicket() );
-        total.setText("TOTAL:" + Double.toString(ticket.getTotal()));
-        ivaticket.setText( "IVA: " + Integer.toString( ticket.getIvaTicket()) );
+        String Fecha = ticket.getFechaTicket().split(" ")[0];
+        Log.i("HPRAAA",Fecha);
+        Fecha = Fecha.split("-")[2]+"/"+Fecha.split("-")[1]+"/"+Fecha.split("-")[0];
+        String Hora = ticket.getFechaTicket().split(" ")[1].substring(0,5);
+        fechaticket.setText( "Fecha: "+ Hora+" "+Fecha  );
+        total.setText("TOTAL: " + Double.toString(ticket.getTotal())+ "€");
+
+        ivaticket.setText( "IVA: " + Integer.toString( ticket.getIvaTicket())+"%" );
 
     }
 

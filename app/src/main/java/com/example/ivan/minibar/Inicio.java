@@ -53,23 +53,13 @@ public class Inicio extends AppCompatActivity {
     public void onActivityResult(int requestCode,  int resultCode, Intent intent){
         switch (requestCode){
             case PEDIDOS:
-                if(resultCode == 2){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Boton Cancela", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-
-                if(resultCode == 1){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Boton Ok", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-
                 if(resultCode == 0){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Boton Volver", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Inicio", Toast.LENGTH_SHORT);
                     toast.show();
                 }
                 break;
             case TICKETS:
-                Toast toast = Toast.makeText(getApplicationContext(), "Boton Terceira Actividade", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getApplicationContext(), "Inicio", Toast.LENGTH_SHORT);
                 toast.show();
                 break;
         }
