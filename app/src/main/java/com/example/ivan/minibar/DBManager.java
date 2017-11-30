@@ -144,15 +144,17 @@ public class DBManager extends SQLiteOpenHelper {
 
         db.beginTransaction();
         if(cursor != null && cursor.moveToFirst()){
-            Cursor cursor2 = db.rawQuery("SELECT * FROM PRODUCTO WHERE ID="+Integer.toString(cursor.getInt(3))+";", null);
-            if(cursor2 != null && cursor2.moveToFirst()) {
-                do {
-                    lineasticket.add(new LineaTicket(cursor.getInt(0),
-                            cursor.getInt(1),
-                            cursor.getInt(2),
-                            new Producto(cursor2.getInt(0), cursor2.getString(1), cursor2.getDouble(2))));
-                } while (cursor2.moveToNext());
-            }
+
+            do {
+                Cursor cursor2 = db.rawQuery("SELECT * FROM PRODUCTO WHERE ID="+Integer.toString(cursor.getInt(3))+";", null);
+                if(cursor2 != null && cursor2.moveToFirst()) {
+                lineasticket.add(new LineaTicket(cursor.getInt(0),
+                        cursor.getInt(1),
+                        cursor.getInt(2),
+                        new Producto(cursor2.getInt(0), cursor2.getString(1), cursor2.getDouble(2))));
+                }
+            } while (cursor.moveToNext());
+
         }
         db.setTransactionSuccessful();
         db.endTransaction();

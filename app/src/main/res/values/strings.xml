@@ -8,4 +8,15 @@
     <string name="numticket">Num</string>
     <string name="importeticket">Importe</string>
     <string name="fechaticket">Fecha</string>
+    <string name="ticketview">Ticket Num:</string>
+    <string name="datosempresa">Cafe-Bar MiniBar</string>
+    <string name="datosfiscales">CIF: 12345678S</string>
+    <string name="vistaunidades">Uds</string>
+    <string name="vistaconcepto">Concepto</string>
+    <string name="vistaprecio">Precio</string>
+    <string name="vistasubtotal">Subtotal</string>
+    <string name="vistatotal">TOTAL:</string>
+    <string name="vistaiva">IVA</string>
+    <string name="vistaimporte">IMPORTE</string>
+    <string name="vistatotalconiva">TOTAL CON IVA</string>
 </resources>

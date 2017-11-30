@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/lblunidades"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/lblconcepto"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/lblprecio"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/lblsubtotal"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+    </android.widget.LinearLayout>
+</android.widget.LinearLayout>
