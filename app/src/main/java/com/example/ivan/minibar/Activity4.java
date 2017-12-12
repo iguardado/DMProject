@@ -58,6 +58,7 @@ public class Activity4 extends Activity {
             public void onClick(View v) {
                 PdfCreator.GenerarPdf( findViewById(android.R.id.content).getRootView() ,
                         Activity4.this, "Ticket"+ticket.getNumTicket());
+
                 finish();
             }
         });
