@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Document;
 
@@ -27,7 +28,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 
-public class Activity2 extends Activity {
+public class Activity2 extends Inicio {
 
     private static ArrayList<Producto> productos = new ArrayList<Producto>();;
     private static Map<String,Producto> mapProductos = new LinkedHashMap<>();
@@ -129,23 +130,9 @@ public class Activity2 extends Activity {
         btPagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder( Activity2.this );
-                builder.setTitle( "Pagar" );
-                builder.setMessage("¿Desea descargar el ticket del pedido?");
-                builder.setNegativeButton("Si", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        descargarTicket();
-                    }
-                });
-                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        guardarPedido(mapProductos, total);
-                        finish();
-                    }
-                });
-                builder.create().show();
+                guardarPedido(mapProductos, total);
+                setResult( 1 );
+                finish();
             }
         });
     }
@@ -191,29 +178,5 @@ public class Activity2 extends Activity {
 
     public void guardarPedido(Map<String, Producto> map, Double total){
         gestorDB.insertarTicket(map, total);
-    }
-
-    public void descargarTicket(){
-        // open a new document
-        PrintAttributes printAttributes = new PrintAttributes.Builder().
-                setColorMode(PrintAttributes.COLOR_MODE_MONOCHROME).
-                setMediaSize(PrintAttributes.MediaSize.NA_LETTER.asLandscape()).
-                setResolution(new PrintAttributes.Resolution("zooey", PRINT_SERVICE, 300, 300)).
-                setMinMargins(PrintAttributes.Margins.NO_MARGINS).
-                build();
-        PrintedPdfDocument document = new PrintedPdfDocument(this,
-                printAttributes);
-
-        PdfDocument.Page page = document.startPage(0);
-
-        View content = this.findViewById(android.R.id.content);
-        content.draw(page.getCanvas());
-
-
-        document.finishPage(page);
-
-        //document.secontent.getContentDescription());
-
-        document.close();
     }
 }

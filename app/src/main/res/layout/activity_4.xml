@@ -161,4 +161,20 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btPdf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/pdf_icon"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/pdf_icon" />
+    </LinearLayout>
+
 </android.widget.LinearLayout>

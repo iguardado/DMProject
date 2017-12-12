@@ -38,28 +38,22 @@ public class Inicio extends AppCompatActivity {
                 Inicio.this.startActivityForResult(intent, TICKETS);
             }
         });
-/*
-        Button botonAct3 = (Button) findViewById(R.id.b);
-        botonAct3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Activity3.class);
-                Inicio.this.startActivityForResult(intent, TICKETS);
-            }
-        });
-        */
     }
 
     public void onActivityResult(int requestCode,  int resultCode, Intent intent){
         switch (requestCode){
             case PEDIDOS:
                 if(resultCode == 0){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Inicio", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Inicio", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                if(resultCode == 1){
+                    Toast toast = Toast.makeText(getApplicationContext(), "Pedido Guardado!!", Toast.LENGTH_LONG);
                     toast.show();
                 }
                 break;
             case TICKETS:
-                Toast toast = Toast.makeText(getApplicationContext(), "Inicio", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getApplicationContext(), "Inicio", Toast.LENGTH_LONG);
                 toast.show();
                 break;
         }

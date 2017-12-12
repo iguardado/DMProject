@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -47,6 +50,17 @@ public class Activity4 extends Activity {
         total.setText("TOTAL: " + Double.toString(ticket.getTotal())+ "€");
 
         ivaticket.setText( "IVA: " + Integer.toString( ticket.getIvaTicket())+"%" );
+
+        ImageButton btPdf = (ImageButton) findViewById(R.id.btPdf);
+
+        btPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PdfCreator.GenerarPdf( findViewById(android.R.id.content).getRootView() ,
+                        Activity4.this, "Ticket"+ticket.getNumTicket());
+                finish();
+            }
+        });
 
     }
 
