@@ -178,5 +178,7 @@ public class Activity2 extends Inicio {
 
     public void guardarPedido(Map<String, Producto> map, Double total){
         gestorDB.insertarTicket(map, total);
+        mapProductos.clear();
+        productos.clear();
     }
 }

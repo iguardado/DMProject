@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,10 +57,11 @@ public class Activity4 extends Activity {
         btPdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PdfCreator.GenerarPdf( findViewById(android.R.id.content).getRootView() ,
+                int result = PdfCreator.GenerarPdf( findViewById(android.R.id.content).getRootView() ,
                         Activity4.this, "Ticket"+ticket.getNumTicket());
-
-                finish();
+                if(result == 1){
+                    finish();
+                }
             }
         });
 

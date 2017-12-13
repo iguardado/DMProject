@@ -120,12 +120,8 @@ public class DBManager extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM TICKET ", null);
 
         db.beginTransaction();
-        if(cursor != null && cursor.moveToFirst())
-        {
-
+        if(cursor != null && cursor.moveToFirst()) {
             do{
-
-
                 tickets.add( new Ticket(cursor.getInt(0), cursor.getDouble(1),
                         cursor.getString(3), cursor.getInt(2),
                         new ArrayList<LineaTicket>()) );
