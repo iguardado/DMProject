@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+	android:background="@color/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,8 +29,8 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/rsz_cervezas"
-                    app:srcCompat="@drawable/rsz_cervezas" />
+                    android:background="@drawable/rsz_cerveza"
+                    app:srcCompat="@drawable/rsz_cerveza" />
 
                 <ImageButton
                     android:id="@+id/btRefresco"
@@ -39,8 +40,8 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
                     android:adjustViewBounds="false"
-                    android:background="@drawable/rsz_refrescos"
-                    app:srcCompat="@drawable/rsz_refrescos" />
+                    android:background="@drawable/rsz_refresco"
+                    app:srcCompat="@drawable/rsz_refresco" />
 
                 <ImageButton
                     android:id="@+id/btCafe"
@@ -60,8 +61,8 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
                     android:adjustViewBounds="false"
-                    android:background="@drawable/rsz_combinado"
-                    app:srcCompat="@drawable/rsz_combinado" />
+                    android:background="@drawable/rsz_combinados"
+                    app:srcCompat="@drawable/rsz_combinados" />
 
                 <ImageButton
                     android:id="@+id/btZumos"
@@ -70,8 +71,8 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/rsz_zumos"
-                    app:srcCompat="@drawable/rsz_zumos" />
+                    android:background="@drawable/rsz_zumo"
+                    app:srcCompat="@drawable/rsz_zumo" />
 
                 <ImageButton
                     android:id="@+id/btChupitos"
