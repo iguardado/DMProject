@@ -23,7 +23,7 @@
         android:layout_weight="0.3"
         android:paddingLeft="10dp"
         android:textAlignment="viewStart"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/txtProducto"
@@ -31,5 +31,5 @@
         android:layout_height="match_parent"
         android:layout_weight="0.67"
         android:textAlignment="center"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 </LinearLayout>

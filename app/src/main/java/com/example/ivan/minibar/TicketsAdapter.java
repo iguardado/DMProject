@@ -60,7 +60,7 @@ public class TicketsAdapter extends ArrayAdapter {
         fecha.setText(datos.get(position).getFechaTicket());
 
         TextView importe = (TextView) view.findViewById(R.id.importeticket);
-        importe.setText(Double.toString(datos.get(position).getTotal()));
+        importe.setText(String.format("%.2f", datos.get(position).getTotal())+"€");
 
         // Devolvemos la vista para que se muestre en el ListView.
         return view;

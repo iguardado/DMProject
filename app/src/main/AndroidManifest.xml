@@ -19,13 +19,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity2" android:label="Actividade2">
+        <activity android:name=".Activity2" android:label="Pedido"
+            android:parentActivityName=".Inicio">
 
         </activity>
-        <activity android:name=".Activity3" android:label="Actividade3">
+        <activity android:name=".Activity3" android:label="Tickets"
+            android:parentActivityName=".Inicio">
 
         </activity>
-        <activity android:name=".Activity4" android:label="Actividade4">
+        <activity android:name=".Activity4" android:label="Ticket en Detalle"
+            android:parentActivityName=".Activity3">
 
         </activity>
     </application>

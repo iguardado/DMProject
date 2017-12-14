@@ -23,8 +23,6 @@ public class DBManager extends SQLiteOpenHelper {
     public static final int DB_VERSION = 2;
 
     public static final String TABLA_COMPRA = "compra";
-    public static final String COMPRA_COL_NOMBRE = "_id";
-    public static final String COMPRA_COL_NUM = "num";
 
     public DBManager(Context context) {
         super(context, DB_NOMBRE, null, DB_VERSION);
@@ -57,6 +55,8 @@ public class DBManager extends SQLiteOpenHelper {
                     "FOREIGN KEY (producto) REFERENCES PRODUCTO(ID)," +
                     "FOREIGN KEY (numTicket) REFERENCES TICKET(numTicket));");
 
+            db.setTransactionSuccessful();
+            db.beginTransaction();
             db.execSQL( "INSERT INTO PRODUCTO(nombre,precio) values"+
                         "('Refresco',1.7),"+
                         "('Cerveza',1.7),"+
@@ -177,7 +177,7 @@ public class DBManager extends SQLiteOpenHelper {
         db2.beginTransaction();
 
         String sqlQuery = "INSERT INTO TICKET(importe,iva,fecha) values";
-        sqlQuery += "(" + String.format("%.2f", total) + ", 21, datetime() );";
+        sqlQuery += "(" + total.toString() + ", 21, datetime() );";
 
         db2.execSQL(sqlQuery);
 

@@ -3,6 +3,7 @@ package com.example.ivan.minibar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +19,7 @@ import java.util.List;
  * Created by Ivan on 28/11/2017.
  */
 
-public class Activity4 extends Activity {
+public class Activity4 extends AppCompatActivity {
     private static DBManager gestorDB;
     private static Ticket ticket;
     private ArrayList<LineaTicket> lineasTicket;
@@ -44,11 +45,10 @@ public class Activity4 extends Activity {
 
         numticket.setText( "NumTicket: " + Integer.toString( ticket.getNumTicket() ) );
         String Fecha = ticket.getFechaTicket().split(" ")[0];
-        Log.i("HPRAAA",Fecha);
         Fecha = Fecha.split("-")[2]+"/"+Fecha.split("-")[1]+"/"+Fecha.split("-")[0];
         String Hora = ticket.getFechaTicket().split(" ")[1].substring(0,5);
-        fechaticket.setText( "Fecha: "+ Hora+" "+Fecha  );
-        total.setText("TOTAL: " + Double.toString(ticket.getTotal())+ "€");
+        fechaticket.setText( "Fecha: "+ Fecha+" "+Hora );
+        total.setText("TOTAL: " + String.format("%.2f", ticket.getTotal())+ "€");
 
         ivaticket.setText( "IVA: " + Integer.toString( ticket.getIvaTicket())+"%" );
 

@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.print.PrintAttributes;
 import android.print.pdf.PrintedPdfDocument;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,7 +29,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 
-public class Activity2 extends Inicio {
+public class Activity2 extends AppCompatActivity {
 
     private static ArrayList<Producto> productos = new ArrayList<Producto>();;
     private static Map<String,Producto> mapProductos = new LinkedHashMap<>();
@@ -43,6 +44,7 @@ public class Activity2 extends Inicio {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
 
+        Log.i("","Iniciamos DB");
         gestorDB = new DBManager( this.getApplicationContext() );
 
         final Button btPagar = findViewById(R.id.btPagar);

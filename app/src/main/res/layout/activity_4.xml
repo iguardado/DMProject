@@ -91,7 +91,7 @@
                 android:layout_weight="0.2"
                 android:text="@string/vistaunidades"
                 android:textAlignment="center"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -101,7 +101,7 @@
                 android:layout_weight="0.35"
                 android:text="@string/vistaconcepto"
                 android:textAlignment="center"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -111,7 +111,7 @@
                 android:layout_weight="0.2"
                 android:text="@string/vistaprecio"
                 android:textAlignment="center"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -121,7 +121,7 @@
                 android:layout_weight="0.25"
                 android:text="@string/vistasubtotal"
                 android:textAlignment="center"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </android.widget.LinearLayout>
@@ -171,6 +171,7 @@
             android:id="@+id/btPdf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="0dp"
             android:layout_weight="1"
             android:background="@drawable/pdf_icon"
             android:scaleType="fitCenter"

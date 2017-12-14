@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/lblconcepto"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.35"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/lblprecio"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/lblsubtotal"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </android.widget.LinearLayout>
 </android.widget.LinearLayout>

@@ -47,10 +47,10 @@ public class LineaTicketAdapter extends ArrayAdapter {
         concepto.setText( prod.getNombre() );
 
         TextView precio = (TextView) view.findViewById(R.id.lblprecio);
-        precio.setText(Double.toString( prod.getPrecio() ));
+        precio.setText(Double.toString( prod.getPrecio() )+" €");
 
         TextView subtotal = (TextView) view.findViewById(R.id.lblsubtotal);
-        subtotal.setText(Double.toString( prod.getPrecio() * datos.get(position).getUnidades() ));
+        subtotal.setText(Double.toString( prod.getPrecio() * datos.get(position).getUnidades() )+" €");
 
         // Devolvemos la vista para que se muestre en el ListView.
         return view;
