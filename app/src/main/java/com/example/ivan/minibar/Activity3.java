@@ -44,38 +44,4 @@ public class Activity3 extends AppCompatActivity {
         lvtickets.setAdapter(adapter);
 
     }
-
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        super.onCreateOptionsMenu( menu );
-        this.getMenuInflater().inflate( R.menu.listaticket_menu, menu );
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem menuItem)
-    {
-        boolean toret = false;
-        switch( menuItem.getItemId() ) {
-            case R.id.btCarpetaTickets:
-                if(ContextCompat.checkSelfPermission(Activity3.this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(Activity3.this,
-                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-
-                }else {
-                    Log.i("","tfyghjiklpñ");
-                    Uri selectedUri = Uri.parse(Environment.getExternalStoragePublicDirectory(
-                            Environment.DIRECTORY_DOWNLOADS).toString());
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setDataAndType(selectedUri, "resource/folder");
-
-                    if (intent.resolveActivityInfo(getPackageManager(), 0) != null) {
-                        startActivity(intent);
-                    }
-                }
-                toret = true;
-                break;
-        }
-        return toret;
-    }
 }

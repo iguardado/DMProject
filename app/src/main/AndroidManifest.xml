@@ -12,24 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".Inicio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".Activity2" android:label="Pedido"
             android:parentActivityName=".Inicio">
-
         </activity>
+
         <activity android:name=".Activity3" android:label="Tickets"
-            android:parentActivityName=".Inicio">
+            android:parentActivityName=".Inicio"></activity>
 
-        </activity>
         <activity android:name=".Activity4" android:label="Ticket en Detalle"
             android:parentActivityName=".Activity3">
-
         </activity>
     </application>
 
