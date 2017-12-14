@@ -1,8 +1,15 @@
 package com.example.ivan.minibar;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,14 +60,31 @@ public class Activity4 extends AppCompatActivity {
 
         ivaticket.setText( "IVA: " + Integer.toString( ticket.getIvaTicket())+"%" );
 
-        ImageButton btPdf = (ImageButton) findViewById(R.id.btPdf);
+        final ImageButton btPdf = (ImageButton) findViewById(R.id.btPdf);
 
         btPdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int result = PdfCreator.GenerarPdf( findViewById(android.R.id.content).getRootView() ,
+                if(ContextCompat.checkSelfPermission(Activity4.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                    btPdf.setVisibility(View.GONE);
+                }
+
+                 int result = PdfCreator.GenerarPdf( findViewById(android.R.id.content).getRootView() ,
                         Activity4.this, "Ticket"+ticket.getNumTicket());
                 if(result == 1){
+                    File file = new File(Environment.getExternalStoragePublicDirectory(
+                            Environment.DIRECTORY_DOWNLOADS)+"/Minibar/" +"Ticket"+ticket.getNumTicket()+".pdf");
+                    Intent target = new Intent(Intent.ACTION_VIEW);
+                    target.setDataAndType(Uri.fromFile(file),"application/pdf");
+                    target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+
+                    Intent intent = Intent.createChooser(target, "Open File");
+                    try {
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        // Instruct the user to install a PDF reader here, or something
+                    }
                     finish();
                 }
             }

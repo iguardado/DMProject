@@ -11,6 +11,8 @@ import android.print.pdf.PrintedPdfDocument;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -132,9 +134,11 @@ public class Activity2 extends AppCompatActivity {
         btPagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                guardarPedido(mapProductos, total);
-                setResult( 1 );
-                finish();
+                if(!productos.isEmpty()) {
+                    guardarPedido(mapProductos, total);
+                    setResult(1);
+                    finish();
+                }
             }
         });
     }
@@ -182,5 +186,34 @@ public class Activity2 extends AppCompatActivity {
         gestorDB.insertarTicket(map, total);
         mapProductos.clear();
         productos.clear();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        super.onCreateOptionsMenu( menu );
+        this.getMenuInflater().inflate( R.menu.pedido_menu, menu );
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem menuItem)
+    {
+        boolean toret = false;
+        switch( menuItem.getItemId() ) {
+            case R.id.btDeletePedido:
+                Iterator it = mapProductos.keySet().iterator();
+                Producto producto;
+
+                while(it.hasNext()){
+                    String clave = (String) it.next();
+                    producto = (Producto) mapProductos.get(clave);
+                    producto.reset();
+                }
+                mapProductos.clear();
+                productos.clear();
+                actualizaListView();
+                toret = true;
+                break;
+        }
+        return toret;
     }
 }

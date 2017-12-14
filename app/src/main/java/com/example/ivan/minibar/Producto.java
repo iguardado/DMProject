@@ -31,6 +31,9 @@ public class Producto {
             this.cantidad--;
         }
     }
+    public void reset(){
+        this.cantidad = 0;
+    }
 
     public int getId(){
         return this.id;

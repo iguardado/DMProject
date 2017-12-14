@@ -9,14 +9,15 @@
     <android.widget.LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:layout_weight="0.05"
-		android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary">
 
         <TextView
             android:id="@+id/numticket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="0.1"
             android:text="@string/numticket"
             android:textAlignment="center"
@@ -27,6 +28,7 @@
             android:id="@+id/importeticket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_weight="0.3"
             android:text="@string/importeticket"
             android:textAlignment="center"
@@ -37,6 +39,7 @@
             android:id="@+id/fechaticket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_weight="0.5"
             android:text="@string/fechaticket"
             android:textAlignment="center"
