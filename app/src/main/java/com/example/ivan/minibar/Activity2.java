@@ -167,7 +167,7 @@ public class Activity2 extends AppCompatActivity {
 
             total += (producto.getCantidad() * producto.getPrecio());
         }
-        lblTotal.setText("TOTAL:  "+ String.format("%.2f", total));
+        lblTotal.setText("TOTAL:  "+ String.format("%.2f", total)+" €");
     }
 
     public static void eliminar(Producto p){

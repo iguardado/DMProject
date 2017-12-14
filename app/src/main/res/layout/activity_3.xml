@@ -2,28 +2,20 @@
 <android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="5dp"
     android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.05"
-        android:text="@string/lblTickets"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="bold" />
 
     <android.widget.LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_weight="0.05">
 
         <TextView
             android:id="@+id/numticket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
+            android:layout_weight="0.1"
             android:text="@string/numticket"
             android:textAlignment="center"
             android:textSize="18sp"
@@ -33,7 +25,7 @@
             android:id="@+id/importeticket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.4"
+            android:layout_weight="0.3"
             android:text="@string/importeticket"
             android:textAlignment="center"
             android:textSize="18sp"
@@ -43,7 +35,7 @@
             android:id="@+id/fechaticket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.4"
+            android:layout_weight="0.5"
             android:text="@string/fechaticket"
             android:textAlignment="center"
             android:textSize="18sp"

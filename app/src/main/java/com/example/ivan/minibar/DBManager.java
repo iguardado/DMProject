@@ -54,9 +54,6 @@ public class DBManager extends SQLiteOpenHelper {
                     "primary KEY(numLinea, numTicket), " +
                     "FOREIGN KEY (producto) REFERENCES PRODUCTO(ID)," +
                     "FOREIGN KEY (numTicket) REFERENCES TICKET(numTicket));");
-
-            db.setTransactionSuccessful();
-            db.beginTransaction();
             db.execSQL( "INSERT INTO PRODUCTO(nombre,precio) values"+
                         "('Refresco',1.7),"+
                         "('Cerveza',1.7),"+

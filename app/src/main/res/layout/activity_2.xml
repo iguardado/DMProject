@@ -133,7 +133,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:text="Total:"
-                        android:textSize="30sp" />
+                        android:textSize="24sp" />
 
                     <Button
                         android:id="@+id/btPagar"
