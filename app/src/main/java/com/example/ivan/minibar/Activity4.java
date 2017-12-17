@@ -82,8 +82,10 @@ public class Activity4 extends AppCompatActivity {
                     Intent intent = Intent.createChooser(target, "Open File");
                     try {
                         startActivity(intent);
-                    } catch (ActivityNotFoundException e) {
-                        // Instruct the user to install a PDF reader here, or something
+
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(),
+                                "Problema al mostrar el ticket", Toast.LENGTH_LONG);
                     }
                     finish();
                 }
